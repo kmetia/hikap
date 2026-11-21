@@ -1,2 +1,8 @@
-{:paths ["src" "test"]
- :deps {kmet/reakt {:local/root "../reakt"}}}
+{:paths ["src"]
+ ;; The standalone hikap project pins reakt; the :test alias uses the sibling
+ ;; checkout so the suite runs against local reakt changes.
+ :deps {kmet/reakt {:git/url "https://github.com/kmetia/reakt.git"
+                    :git/sha "e1e93d384906b208b40106f6035e6186d6ba843c"}}
+ :aliases
+ {:test {:extra-paths ["test"]
+         :override-deps {kmet/reakt {:local/root "../reakt"}}}}}
